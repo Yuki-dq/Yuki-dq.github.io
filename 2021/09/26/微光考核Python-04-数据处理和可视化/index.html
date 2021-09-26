@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>微光考核Python-04:数据处理和可视化 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="难度系数：困难 【0基础学数据分析】谁能拒绝用简单的python处理数据和数据可视化呢？  题目要求 能够运用第三方库实现简单的数据处理和可视化  任务1下载中国大学综合排名的csv文件，使用pandas导入我们需要的数据并在控制台输出表格。 任务2利用分组计算各省市大学的平均总分并保存到一个xls文件中（总分的空值填充为0） 任务3 最精彩的数据可视化部分来了！  1.用pandas绘各省市大">
+<meta property="og:type" content="article">
+<meta property="og:title" content="微光考核Python-04:数据处理和可视化">
+<meta property="og:url" content="http://example.com/2021/09/26/%E5%BE%AE%E5%85%89%E8%80%83%E6%A0%B8Python-04-%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86%E5%92%8C%E5%8F%AF%E8%A7%86%E5%8C%96/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="难度系数：困难 【0基础学数据分析】谁能拒绝用简单的python处理数据和数据可视化呢？  题目要求 能够运用第三方库实现简单的数据处理和可视化  任务1下载中国大学综合排名的csv文件，使用pandas导入我们需要的数据并在控制台输出表格。 任务2利用分组计算各省市大学的平均总分并保存到一个xls文件中（总分的空值填充为0） 任务3 最精彩的数据可视化部分来了！  1.用pandas绘各省市大">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://raw.githubusercontent.com/Yuki-dq/Picture/master/20210926203446.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Yuki-dq/Picture/master/20210926202319.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Yuki-dq/Picture/master/20210926204303.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Yuki-dq/Picture/master/20210926204431.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Yuki-dq/Picture/master/20210926204533.png">
+<meta property="article:published_time" content="2021-09-26T12:18:08.000Z">
+<meta property="article:modified_time" content="2021-09-26T13:45:18.890Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Yuki-dq/Picture/master/20210926203446.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-微光考核Python-04-数据处理和可视化" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/09/26/%E5%BE%AE%E5%85%89%E8%80%83%E6%A0%B8Python-04-%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86%E5%92%8C%E5%8F%AF%E8%A7%86%E5%8C%96/" class="article-date">
+  <time class="dt-published" datetime="2021-09-26T12:18:08.000Z" itemprop="datePublished">2021-09-26</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      微光考核Python-04:数据处理和可视化
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p><code>难度系数</code>：困难 <strong>【0基础学数据分析】谁能拒绝用简单的python处理数据和数据可视化呢？</strong></p>
+</blockquote>
+<h2 id="题目要求"><a href="#题目要求" class="headerlink" title="题目要求"></a>题目要求</h2><blockquote>
+<p>能够运用第三方库实现简单的数据处理和可视化</p>
+</blockquote>
+<h3 id="任务1"><a href="#任务1" class="headerlink" title="任务1"></a>任务1</h3><p>下载中国大学综合排名的<a target="_blank" rel="noopener" href="https://share.weiyun.com/KAEJVnNA">csv文件</a>，使用pandas导入我们需要的数据并在控制台输出表格。</p>
+<h3 id="任务2"><a href="#任务2" class="headerlink" title="任务2"></a>任务2</h3><p>利用<code>分组</code>计算各省市大学的平均总分并保存到一个xls文件中（总分的空值填充为0）</p>
+<h3 id="任务3"><a href="#任务3" class="headerlink" title="任务3"></a>任务3</h3><blockquote>
+<p>最精彩的数据可视化部分来了！</p>
+</blockquote>
+<p>1.用<code>pandas</code>绘各省市大学平均总分的折线图并将每一点的纵坐标(保留2位小数)标注在点上。</p>
+<p>2.以学校名为x轴画出将前5行数据的倒数5列所有数据的柱状图。</p>
+<p>3.以学校名为x轴将前5行数据的倒数5列以<code>子图</code>形式绘制。</p>
+<h2 id="解答部分"><a href="#解答部分" class="headerlink" title="解答部分"></a>解答部分</h2><h3 id="一-过程部分"><a href="#一-过程部分" class="headerlink" title="一.过程部分"></a>一.过程部分</h3><h4 id="1-输出表格"><a href="#1-输出表格" class="headerlink" title="1.输出表格"></a>1.输出表格</h4><p><img src="https://raw.githubusercontent.com/Yuki-dq/Picture/master/20210926203446.png"></p>
+<h4 id="2-保存平均总分"><a href="#2-保存平均总分" class="headerlink" title="2.保存平均总分"></a>2.保存平均总分</h4><p><img src="https://raw.githubusercontent.com/Yuki-dq/Picture/master/20210926202319.png"></p>
+<h4 id="3-输出折线图"><a href="#3-输出折线图" class="headerlink" title="3.输出折线图"></a>3.输出折线图</h4><p><img src="https://raw.githubusercontent.com/Yuki-dq/Picture/master/20210926204303.png"></p>
+<h4 id="4-输出柱状图"><a href="#4-输出柱状图" class="headerlink" title="4.输出柱状图"></a>4.输出柱状图</h4><p><img src="https://raw.githubusercontent.com/Yuki-dq/Picture/master/20210926204431.png"></p>
+<h4 id="5-输出子图"><a href="#5-输出子图" class="headerlink" title="5.输出子图"></a>5.输出子图</h4><p><img src="https://raw.githubusercontent.com/Yuki-dq/Picture/master/20210926204533.png"></p>
+<h3 id="二-解决思路"><a href="#二-解决思路" class="headerlink" title="二.解决思路"></a>二.解决思路</h3><h4 id="1-文件保存"><a href="#1-文件保存" class="headerlink" title="1.文件保存"></a>1.文件保存</h4><p>先用**fillna(0)**函数将读取到的表格中缺失的部分（NAN）填充为0</p>
+<p>然后**groupby().mean()<strong>分组并取均值，用</strong>round()**保留数字到小数点后2位</p>
+<p>最后保存</p>
+<h4 id="2-图片显示"><a href="#2-图片显示" class="headerlink" title="2.图片显示"></a>2.图片显示</h4><p>首先使用这段代码使中文标签能够正常显示（否则会出现拳皇13那样的空白框）</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pylab <span class="keyword">import</span> *</span><br><span class="line">mpl.rcParams[<span class="string">&#x27;font.sans-serif&#x27;</span>] = [<span class="string">&#x27;SimHei&#x27;</span>]</span><br></pre></td></tr></table></figure>
+
+<p>1.对于折线图和柱状图，我用的方法是：</p>
+<p>用x和y作为变量，分别保存一组列表，然后用**plt.bar()**组合,**plt.show()**展示</p>
+<p>添加标签的函数为<strong>plt.xlable()<strong>和</strong>plt.ylable()</strong></p>
+<p>2.对于子图，我用的方法是：</p>
+<p>以fig作为变量，用**plt.figure()**生成一个空白图并保存入fig中</p>
+<p>**ax=fig.add_subplot()**生成子图</p>
+<p>添加标签的函数为<strong>ax.set_xlable()</strong></p>
+<h3 id="三-一些问题"><a href="#三-一些问题" class="headerlink" title="三.一些问题"></a>三.一些问题</h3><h4 id="1-对于一个表格形式的变量data，data-index是纵轴的标题，data-columnns是横轴的标题，二者均为列表格式。"><a href="#1-对于一个表格形式的变量data，data-index是纵轴的标题，data-columnns是横轴的标题，二者均为列表格式。" class="headerlink" title="1.对于一个表格形式的变量data，data.index是纵轴的标题，data.columnns是横轴的标题，二者均为列表格式。"></a>1.对于一个表格形式的变量data，data.index是纵轴的标题，data.columnns是横轴的标题，二者均为列表格式。</h4><h4 id="2-如果x轴的汉字挤不下的话，可以把图片放大，还不行的话就用plt-xticks-rotation-角度-将x轴中的字旋转某个角度，对于子图来说，要每个循环都要运行一次这个。"><a href="#2-如果x轴的汉字挤不下的话，可以把图片放大，还不行的话就用plt-xticks-rotation-角度-将x轴中的字旋转某个角度，对于子图来说，要每个循环都要运行一次这个。" class="headerlink" title="2.如果x轴的汉字挤不下的话，可以把图片放大，还不行的话就用plt.xticks(rotation=角度) 将x轴中的字旋转某个角度，对于子图来说，要每个循环都要运行一次这个。"></a>2.如果x轴的汉字挤不下的话，可以把图片放大，还不行的话就用plt.xticks(rotation=角度) 将x轴中的字旋转某个角度，对于子图来说，要每个循环都要运行一次这个。</h4><h4 id="3-data-loc-起数字-止数字-可以截取部分行，data-iloc-起数字-止数字-可以截取部分列"><a href="#3-data-loc-起数字-止数字-可以截取部分行，data-iloc-起数字-止数字-可以截取部分列" class="headerlink" title="3.data.loc[起数字:止数字]可以截取部分行，data.iloc[起数字:止数字]可以截取部分列"></a>3.data.loc[起数字:止数字]可以截取部分行，data.iloc[起数字:止数字]可以截取部分列</h4><h3 id="四-代码"><a href="#四-代码" class="headerlink" title="四.代码"></a>四.代码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: UTF-8 -*- </span></span><br><span class="line"><span class="keyword">from</span> pylab <span class="keyword">import</span> *</span><br><span class="line">mpl.rcParams[<span class="string">&#x27;font.sans-serif&#x27;</span>] = [<span class="string">&#x27;SimHei&#x27;</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> xlwt</span><br><span class="line"><span class="keyword">from</span> xlwt.Worksheet <span class="keyword">import</span> Worksheet</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line">data = pd.read_csv(<span class="built_in">open</span>(<span class="string">&#x27;D:\桌面\YUKI\中国大学综合排名2021.csv&#x27;</span>)).fillna(<span class="number">0</span>)</span><br><span class="line"><span class="comment">#print(data.head(6))</span></span><br><span class="line"><span class="comment">#print(data.columns)</span></span><br><span class="line"><span class="comment">#print(data[&#x27;总分&#x27;][581])</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">printf</span>(<span class="params">data</span>):</span></span><br><span class="line">    <span class="built_in">print</span>(data)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">save</span>(<span class="params">data</span>):</span></span><br><span class="line">    g = data.groupby(<span class="string">&#x27;省市&#x27;</span>).mean()</span><br><span class="line">    g = <span class="built_in">round</span>(g,<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">    writer = pd.ExcelWriter(<span class="string">&#x27;average.xls&#x27;</span>)</span><br><span class="line">    g.to_excel(writer,<span class="string">&#x27;Sheet1&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    writer.save()</span><br><span class="line">    writer.close()</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">pic1</span>(<span class="params">data</span>):</span></span><br><span class="line">    g = data.groupby(<span class="string">&#x27;省市&#x27;</span>).mean()</span><br><span class="line">    g = <span class="built_in">round</span>(g,<span class="number">2</span>)</span><br><span class="line">    <span class="comment">#print(list(g.index))</span></span><br><span class="line">    <span class="comment">#print(round(g,2))</span></span><br><span class="line">    <span class="comment">#g.to_excel(&#x27;average.xls&#x27;)</span></span><br><span class="line">    x = <span class="built_in">list</span>(g.index)</span><br><span class="line">    y = <span class="built_in">list</span>(g[<span class="string">&#x27;总分&#x27;</span>])</span><br><span class="line">    <span class="keyword">for</span> a,b <span class="keyword">in</span> <span class="built_in">zip</span>(x,y):</span><br><span class="line">        plt.text(a,b+<span class="number">0.5</span>,<span class="string">&#x27;%.2f&#x27;</span>%b,ha = <span class="string">&#x27;center&#x27;</span>,va = <span class="string">&#x27;bottom&#x27;</span>,fontsize=<span class="number">7</span>)</span><br><span class="line"></span><br><span class="line">    plt.plot(x,y)</span><br><span class="line">    plt.ylabel(<span class="string">&#x27;总分&#x27;</span>)</span><br><span class="line">    plt.show()</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">pic2</span>(<span class="params">data</span>):</span></span><br><span class="line">    <span class="comment">#data.set_index(data.index).plot.bar()</span></span><br><span class="line">    <span class="comment">#data.loc[:6].iloc[:,6:7].plot.bar(subplots=True)</span></span><br><span class="line">    img = data.loc[:<span class="number">4</span>].iloc[:,<span class="number">12</span>:<span class="number">17</span>] </span><br><span class="line">    <span class="comment">#注意[0]的位置</span></span><br><span class="line">    <span class="comment">#print(list(img.columns[0]))</span></span><br><span class="line">    <span class="comment">#print(list(img.columns)[0])</span></span><br><span class="line">    lis = []</span><br><span class="line">    <span class="keyword">for</span> a <span class="keyword">in</span> <span class="built_in">list</span>(img.columns):</span><br><span class="line">        y = <span class="built_in">list</span>(img[a])</span><br><span class="line">        lis.append(y)</span><br><span class="line">    </span><br><span class="line">    x=np.array([<span class="number">0</span>,<span class="number">1.5</span>,<span class="number">3</span>,<span class="number">4.5</span>,<span class="number">6</span>])</span><br><span class="line">    x=x-<span class="number">0.6</span></span><br><span class="line">    width = <span class="number">0.2</span></span><br><span class="line">    num=<span class="number">0</span></span><br><span class="line">    <span class="comment">#print(x)</span></span><br><span class="line">    <span class="comment">#print(lis)</span></span><br><span class="line">    <span class="keyword">for</span> a <span class="keyword">in</span> lis:</span><br><span class="line">        x = x + width</span><br><span class="line">        plt.bar(x,a,width=width,label=<span class="built_in">list</span>(img.columns)[num])</span><br><span class="line">        num += <span class="number">1</span></span><br><span class="line">    plt.legend(loc=<span class="number">1</span>,fontsize=<span class="number">10</span>)</span><br><span class="line">    plt.xticks(x-<span class="number">0.4</span>,<span class="built_in">list</span>(data[<span class="string">&#x27;学校名称&#x27;</span>].loc[:<span class="number">4</span>]))</span><br><span class="line">    plt.show()</span><br><span class="line">    <span class="comment">#print(type(img))</span></span><br><span class="line">    <span class="comment">#img为numpy.ndarry格式</span></span><br><span class="line">    <span class="comment">#出现TypeError: Image data of dtype object cannot be converted to float，可能是因为图片像素过大</span></span><br><span class="line">    <span class="comment">#np.save(&#x27;img.npy&#x27;,img)</span></span><br><span class="line">    <span class="comment">#print(img.shape)</span></span><br><span class="line">    <span class="comment">#img = np.load(&#x27;img.npy&#x27;,allow_pickle=True)</span></span><br><span class="line">    <span class="comment">#plt.imshow(img)</span></span><br><span class="line">    <span class="comment">#plt.show()</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">pic3</span>(<span class="params">data</span>):</span></span><br><span class="line"></span><br><span class="line">    img = data.loc[:<span class="number">4</span>].iloc[:,<span class="number">12</span>:<span class="number">17</span>] </span><br><span class="line"></span><br><span class="line">    lis = []</span><br><span class="line">    <span class="keyword">for</span> a <span class="keyword">in</span> <span class="built_in">list</span>(img.columns):</span><br><span class="line">        y = <span class="built_in">list</span>(img[a])</span><br><span class="line">        lis.append(y)</span><br><span class="line"></span><br><span class="line">    fig = plt.figure(figsize=(<span class="number">18</span>,<span class="number">8</span>))</span><br><span class="line">    <span class="comment">#print(list(range(1,6)))</span></span><br><span class="line">    <span class="keyword">for</span> a <span class="keyword">in</span> <span class="built_in">list</span>(<span class="built_in">range</span>(<span class="number">0</span>,<span class="number">5</span>)):</span><br><span class="line">        ax = fig.add_subplot(<span class="number">1</span>,<span class="number">5</span>,(a+<span class="number">1</span>))</span><br><span class="line">        x = <span class="built_in">list</span>(data[<span class="string">&#x27;学校名称&#x27;</span>].loc[:<span class="number">4</span>])</span><br><span class="line">        ax.set_title(img.columns[a])</span><br><span class="line">        <span class="comment">#ax.set_xlabel可以给x轴加标签</span></span><br><span class="line">        <span class="comment">#ax.set_ylable可以给y轴加标签</span></span><br><span class="line">        y = lis[a]</span><br><span class="line">        ax.bar(x,y)</span><br><span class="line">        plt.xticks(rotation=<span class="number">270</span>)</span><br><span class="line"></span><br><span class="line">    plt.show()</span><br><span class="line"></span><br><span class="line">nu = <span class="built_in">int</span>(<span class="built_in">input</span>(<span class="string">&#x27;输入1位输出表格，2为保存以省市名称为index的xls文件，3为输出折线图，4为柱状图，5为子图：&#x27;</span>))   </span><br><span class="line"><span class="keyword">if</span> nu==<span class="number">1</span>: </span><br><span class="line">    printf(data)</span><br><span class="line"><span class="keyword">if</span> nu==<span class="number">2</span>:</span><br><span class="line">    save(data)</span><br><span class="line"><span class="keyword">if</span> nu ==<span class="number">3</span>:</span><br><span class="line">    pic1(data)</span><br><span class="line"><span class="keyword">if</span> nu==<span class="number">4</span>:</span><br><span class="line">    pic2(data)</span><br><span class="line"><span class="keyword">if</span> nu==<span class="number">5</span>:</span><br><span class="line">    pic3(data)</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/09/26/%E5%BE%AE%E5%85%89%E8%80%83%E6%A0%B8Python-04-%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86%E5%92%8C%E5%8F%AF%E8%A7%86%E5%8C%96/" data-id="cku1a2frm0000agrr3ky9bvvy" data-title="微光考核Python-04:数据处理和可视化" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2021/09/19/%E5%BE%AE%E5%85%89%E8%80%83%E6%A0%B8Python-03-%E7%88%AC%E8%99%AB%E7%BF%BB%E8%AF%91/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">微光考核Python-03:爬虫翻译</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">September 2021</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/09/26/%E5%BE%AE%E5%85%89%E8%80%83%E6%A0%B8Python-04-%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86%E5%92%8C%E5%8F%AF%E8%A7%86%E5%8C%96/">微光考核Python-04:数据处理和可视化</a>
+          </li>
+        
+          <li>
+            <a href="/2021/09/19/%E5%BE%AE%E5%85%89%E8%80%83%E6%A0%B8Python-03-%E7%88%AC%E8%99%AB%E7%BF%BB%E8%AF%91/">微光考核Python-03:爬虫翻译</a>
+          </li>
+        
+          <li>
+            <a href="/2021/09/14/%E5%BE%AE%E5%85%89%E8%80%83%E6%A0%B8Python-02-%E7%88%AC%E8%99%AB%E5%85%A5%E9%97%A8/">微光考核Python-02:爬虫入门</a>
+          </li>
+        
+          <li>
+            <a href="/2021/09/11/%E5%BE%AE%E5%85%89%E8%80%83%E6%A0%B8Python-01-HelloPython/">微光考核Python-01:HelloPython</a>
+          </li>
+        
+          <li>
+            <a href="/2021/09/04/%E4%BD%BF%E7%94%A8Github%E5%8F%8AHexo%E6%90%AD%E5%BB%BA%E5%B1%9E%E4%BA%8E%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2/">使用Github及Hexo搭建属于自己的博客</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
