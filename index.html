@@ -71,6 +71,94 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-微光考核机器学习-01-入门理论基础" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/09/28/%E5%BE%AE%E5%85%89%E8%80%83%E6%A0%B8%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-01-%E5%85%A5%E9%97%A8%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80/" class="article-date">
+  <time class="dt-published" datetime="2021-09-28T11:35:26.000Z" itemprop="datePublished">2021-09-28</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/09/28/%E5%BE%AE%E5%85%89%E8%80%83%E6%A0%B8%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-01-%E5%85%A5%E9%97%A8%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80/">微光考核机器学习-01:入门理论基础</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>hexo竟然不识别公式块…只好截图了。不显示的话刷新就好。</p>
+<h1 id="机器学习方向-01：入门理论基础"><a href="#机器学习方向-01：入门理论基础" class="headerlink" title="机器学习方向-01：入门理论基础"></a>机器学习方向-01：入门理论基础</h1><blockquote>
+<p><code>难度系数</code>：简单</p>
+<p>什么？人人都在吹的深度学习人工智能，你竟然还不知道它的原理到底是什么！不妨在各大网站看看，探索一下这东西到底是什么。</p>
+<p>可以看看来自 3B1B 的<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1bx411M7Zx">可视化科普视频</a> ，也许能让你明白其中奥妙，甚至像我一样半夜看完兴奋得跳起来尝试手撸代码，结果什么都写不出来，从此走上机器学习的不归路。</p>
+</blockquote>
+<h2 id="题目要求"><a href="#题目要求" class="headerlink" title="题目要求"></a>题目要求</h2><p>通过搜索引擎了解机器学习/深度学习，理解它们的简单原理，并回答以下问题：</p>
+<ol>
+<li>目前机器学习/深度学习主要分为哪些<strong>板块</strong>（哪些<strong>算法</strong>）？对应生活中有哪些<strong>应用</strong>？</li>
+<li><strong>链式法则</strong>是什么？<strong>泰勒公式</strong>是什么？<strong>梯度</strong>又是什么？</li>
+<li><strong>梯度下降</strong>的原理？<strong>反向传播</strong>的原理？</li>
+<li>[<strong>开放性</strong>] 你认为机器学习的<strong>本质</strong>是什么？</li>
+</ol>
+<h2 id="解答部分"><a href="#解答部分" class="headerlink" title="解答部分"></a>解答部分</h2><p>1.</p>
+<p><strong>机器学习</strong>：一种训练人工智能的方法，通过<strong>大量的数据</strong>并<strong>指定参数</strong>（数字化特征）使算法学习如何完成任务，来规避考虑<strong>所有</strong>算法可能遇到的结果的代价。如要想训练出可以区分斑点狗和猫的算法，我们需要足够的数据，并给出一些数字化的区别：是否有长耳朵，是否有斑点等。这样我们就不用告诉机器所有猫狗可能的样子，然后让它一个个分辨了。</p>
+<p>分类：从学习方法上来分，机器学习算法可以分为监督学习（如分类问题）、无监督学习（如聚类问题）、半监督学习、集成学习、深度学习和强化学习。</p>
+<p>应用：指纹识别、人脸检测等。</p>
+<p><strong>深度学习</strong>：深度学习是机器学习的一部分。受人脑神经元的启发，我们可以构建一个<strong>人工神经网络</strong>。当这个网络有多层时，我们称其为深度神经网络。对于上文猫狗的例子，这次我们只需给出猫狗的图像，机器便可自己发现区别并加以训练。如对于手写数字的图像分类就是通过识别大量图片的像素激活值来确定每层的权重及偏置，达到提高正确率的目的。</p>
+<p>分类：从学习方法上来分，可以分为有监督和无/半监督的学习方法。</p>
+<p>应用：无人驾驶汽车，预防性医疗保健等。</p>
+<p>不过深度学习不能和人脑划等号，仅仅是启发而已。比如深度学习需要大量的数据堆砌，但即使是一个小孩子，当你给他看几张自行车的照片，他也能够分辨出自行车的样子了。</p>
+<p>2.</p>
+<p><strong>链式法则</strong>：若记<strong>u=g(y)</strong>,**y=f(x)**，且两者可微，则</p>
+<p><img src="https://raw.githubusercontent.com/Yuki-dq/Picture/master/20211001140539.png"></p>
+<p>也就是说可以把<strong>求导</strong>看做是<strong>分子与分母</strong>的形式进行<strong>拆分和化简</strong>。</p>
+<p><strong>泰勒公式</strong>：可以把一个函数展开为与该函数<strong>某点值</strong>有关的无限项：</p>
+<p><img src="https://raw.githubusercontent.com/Yuki-dq/Picture/master/20211001140600.png"></p>
+<p>ps:在代码块里,n阶导数f^(n)^(x)是这样表示的：f^{(n)}(x)，代码块中的大括号表示一个整体。</p>
+<p>另外，多个字符构成的上角标还可以用两个<strong>^</strong>(不适用于公式块)和 html的上角标格式（这个在hexo里面识别有问题，大家自行查找吧，同样不适用于公式块)来表示。</p>
+<p><strong>梯度</strong>：梯度是一个<strong>矢量</strong>，对于函数上的一点而言，沿着梯度的方向变化最快。即该点的梯度方向对于函数来说是完全向上的。</p>
+<p>3.</p>
+<p><strong>梯度下降</strong>：当你试图用深度学习来训练出可以分辨手写数字的模型，这时需要有一个判断模型是否成功的标准，即<strong>给定一个函数</strong>，代表结果与预期的差异，每次结果为函数上的一个点。如此可知，函数值越小，模型正确率越高。因此模型训练的意义在于找到每个点的<strong>梯度</strong>，使其<strong>更快</strong>地下降到最低点，达到最高的正确率。</p>
+<p><strong>反向传播</strong>：</p>
+<p>首先将深度神经网络简化为共三层（输入最右边的是期待值），每层一个单元。</p>
+<p><img src="https://raw.githubusercontent.com/Yuki-dq/Picture/master/20210930190236.png"></p>
+<p>由于第三层（输出层）的激活值a^(2)^是由a^(1)^决定的，即：</p>
+<p><img src="https://raw.githubusercontent.com/Yuki-dq/Picture/master/20211001140635.png"></p>
+<p>其中w^(1)^代表a^(1)^占a^(2)^的权重，b^(1)^代表偏置（偏置的大小控制着激活这个单元的难易程度。）</p>
+<p>然后是成本（成本值越小，说明你这次的输出层效果与期待越相似）：</p>
+<p><img src="https://raw.githubusercontent.com/Yuki-dq/Picture/master/20211001140657.png"></p>
+<p>由此可以通过链式法则将梯度拆分：</p>
+<p><img src="https://raw.githubusercontent.com/Yuki-dq/Picture/master/20211001140721.png"></p>
+<p><del>敲公式真的折磨</del></p>
+<p>然后将其拓展到一层有多个单元：（左边为$a^{(L-1)}_ {0}$,$a^{(L-1)}_ {2}$,…,$a^{(L-1)}_ {n-1}$,中间为$a^{(L)}_ {0}$,$a^{(L)}_ {2}$,…,$a^{(L)}_ {n_L-1}$,左边为y<del>0</del>,…,y<del>n-1</del>)(左边和中间的n不一定相同，中间和右边的n相同)</p>
+<p><img src="https://raw.githubusercontent.com/Yuki-dq/Picture/master/20210930200608.png"></p>
+<p>即：</p>
+<p><img src="https://raw.githubusercontent.com/Yuki-dq/Picture/master/20211001140858.png"></p>
+<p>最后直观地说说反向传播的作用：举个例子，对于一个28x28的像素图片来说，将其变为一个输入层并添加多个隐藏层，所得到的w以及b值会超过5位数，采用反向传播求出梯度可以使成本函数延梯度向最低点（最精确）前进，这明显比一次次随机地改变wb值要高效的多。</p>
+<p>4.</p>
+<p>我认为原本在某方面的智能是指尽可能全面地使机器能够处理<strong>所有有关的情况</strong>，但机器学习巧妙地<strong>绕开</strong>了这一点，是由量变引起质变，通过足够大量的数据训练来学习某种标准，深度学习更是能够自行规划标准。虽然仍需庞大的数据集，但深度学习已经使机器有了类似人的部分了。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/09/28/%E5%BE%AE%E5%85%89%E8%80%83%E6%A0%B8%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-01-%E5%85%A5%E9%97%A8%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80/" data-id="cku7s6kik0000y4rrfjd2hj02" data-title="微光考核机器学习-01:入门理论基础" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-微光考核Python-04-数据处理和可视化" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2021/09/26/%E5%BE%AE%E5%85%89%E8%80%83%E6%A0%B8Python-04-%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86%E5%92%8C%E5%8F%AF%E8%A7%86%E5%8C%96/" class="article-date">
@@ -581,6 +669,10 @@
       <ul>
         
           <li>
+            <a href="/2021/09/28/%E5%BE%AE%E5%85%89%E8%80%83%E6%A0%B8%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-01-%E5%85%A5%E9%97%A8%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80/">微光考核机器学习-01:入门理论基础</a>
+          </li>
+        
+          <li>
             <a href="/2021/09/26/%E5%BE%AE%E5%85%89%E8%80%83%E6%A0%B8Python-04-%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86%E5%92%8C%E5%8F%AF%E8%A7%86%E5%8C%96/">微光考核Python-04:数据处理和可视化</a>
           </li>
         
@@ -594,10 +686,6 @@
         
           <li>
             <a href="/2021/09/11/%E5%BE%AE%E5%85%89%E8%80%83%E6%A0%B8Python-01-HelloPython/">微光考核Python-01:HelloPython</a>
-          </li>
-        
-          <li>
-            <a href="/2021/09/04/%E4%BD%BF%E7%94%A8Github%E5%8F%8AHexo%E6%90%AD%E5%BB%BA%E5%B1%9E%E4%BA%8E%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2/">使用Github及Hexo搭建属于自己的博客</a>
           </li>
         
       </ul>
