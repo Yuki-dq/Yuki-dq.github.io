@@ -71,6 +71,68 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-微光考核机器学习-02-入门理论实践" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/10/04/%E5%BE%AE%E5%85%89%E8%80%83%E6%A0%B8%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-02-%E5%85%A5%E9%97%A8%E7%90%86%E8%AE%BA%E5%AE%9E%E8%B7%B5/" class="article-date">
+  <time class="dt-published" datetime="2021-10-04T02:47:45.000Z" itemprop="datePublished">2021-10-04</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/10/04/%E5%BE%AE%E5%85%89%E8%80%83%E6%A0%B8%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-02-%E5%85%A5%E9%97%A8%E7%90%86%E8%AE%BA%E5%AE%9E%E8%B7%B5/">微光考核机器学习-02:入门理论实践</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="题目要求"><a href="#题目要求" class="headerlink" title="题目要求"></a>题目要求</h2><ol>
+<li>生成数据集 随机生成常数 a,b,c 。 生成 500 条数据，满足以下条件： <img src="https://join.glimmer.space/ml/2-2.svg" alt="img"> 其中，随机变量 x 服从 -10到 10的均匀分布，随机变量 e 服从均值为 0，方差为 1 的均匀分布。</li>
+<li>应用<strong>梯度下降法</strong>，求出恰当的 a,b,c ，使每个数据点到平面 z=F(x,y)=ax+by+c的<strong>垂直方向（z 轴）距离的平方之和</strong>最小。 训练过程中，要求每 100 条数据打印当前损失（点到平面的垂直距离)。</li>
+<li>如果你正确的使用了梯度下降法，那么求得的 a,b,c 将与你预先设定的 a,b,c 非常接近。</li>
+</ol>
+<h2 id="解答部分"><a href="#解答部分" class="headerlink" title="解答部分"></a>解答部分</h2><h3 id="一-结果展示"><a href="#一-结果展示" class="headerlink" title="一.结果展示"></a>一.结果展示</h3><p>迭代次数：10</p>
+<p>选取的a=3,b=4,c=5</p>
+<p>每次单独生成a,b,c固定的500组数据,每使用100组数据便输出一行</p>
+<p>delta代表距离</p>
+<p><img src="https://raw.githubusercontent.com/Yuki-dq/Picture/master/20211004203930.png"></p>
+<h3 id="二-解决思路"><a href="#二-解决思路" class="headerlink" title="二.解决思路"></a>二.解决思路</h3><h4 id="1-数据生成"><a href="#1-数据生成" class="headerlink" title="1.数据生成"></a>1.数据生成</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">create</span>():</span></span><br><span class="line">    a=<span class="number">3</span></span><br><span class="line">    b=<span class="number">4</span></span><br><span class="line">    c=<span class="number">5</span></span><br><span class="line">    </span><br><span class="line">    data = []</span><br><span class="line">    x=np.random.uniform(-<span class="number">10</span>,<span class="number">10</span>,<span class="number">500</span>)</span><br><span class="line">    y=np.random.uniform(-<span class="number">10</span>,<span class="number">10</span>,<span class="number">500</span>)</span><br><span class="line">    e=np.random.randn(<span class="number">500</span>, <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>,<span class="number">500</span>):</span><br><span class="line">        mini = []</span><br><span class="line">        mini.append(<span class="built_in">round</span>(a*x[i]+b*y[i]+c+e[i][<span class="number">0</span>],<span class="number">4</span>))</span><br><span class="line">        mini.append(<span class="built_in">round</span>(x[i],<span class="number">4</span>))</span><br><span class="line">        mini.append(<span class="built_in">round</span>(y[i],<span class="number">4</span>))</span><br><span class="line">        mini.append(<span class="built_in">round</span>(e[i][<span class="number">0</span>],<span class="number">4</span>))</span><br><span class="line">        data.append(mini)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> data</span><br></pre></td></tr></table></figure>
+
+<p>将同一组的数据装在同一个列表中，然后打包。</p>
+<p>定义成函数可以保证在每一次迭代中可以使用不同的数据集。</p>
+<h4 id="2-数据训练"><a href="#2-数据训练" class="headerlink" title="2.数据训练"></a>2.数据训练</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">update</span>(<span class="params">m,eta,m_list</span>):</span></span><br><span class="line">    <span class="comment">#zm=ax+by+c</span></span><br><span class="line">    zm = <span class="built_in">round</span>(m_list[<span class="number">0</span>]*m[<span class="number">1</span>] + m_list[<span class="number">1</span>]*m[<span class="number">2</span>] + m_list[<span class="number">2</span>],<span class="number">4</span>)</span><br><span class="line">    z = zm - m[<span class="number">0</span>]</span><br><span class="line">    <span class="comment">#z是输出层与预期的差</span></span><br><span class="line">    delta = [<span class="built_in">round</span>(m[<span class="number">1</span>]*eta*z,<span class="number">6</span>),<span class="built_in">round</span>(m[<span class="number">2</span>]*eta*z,<span class="number">6</span>),<span class="built_in">round</span>(eta*z,<span class="number">6</span>)]</span><br><span class="line">    <span class="comment">#print(delta)</span></span><br><span class="line">    mm = []</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> [<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>]:</span><br><span class="line">        num = <span class="built_in">round</span>(m_list[i]-delta[i],<span class="number">4</span>)</span><br><span class="line">        mm.append(num)</span><br><span class="line">    <span class="comment">#print(mm)</span></span><br><span class="line">    <span class="keyword">return</span> mm</span><br></pre></td></tr></table></figure>
+
+<p>然后讲一下原理：</p>
+<p><img src="https://raw.githubusercontent.com/Yuki-dq/Picture/master/20211004204719.png"></p>
+<p>am和bm是自变量，在训练时，计算的梯度是关于a和b的，在每组数据中，x和y固定不变</p>
+<p><img src="https://raw.githubusercontent.com/Yuki-dq/Picture/master/20211004212115.png"></p>
+<p>在这里我并没有添加sigmoid()函数，这是因为我每次训练时都会取目标值的小数点后四位，添加该函数后a,b,c的梯度会变得特别小，四舍五入会变成[0,0,0]</p>
+<h3 id="三-遇到的一些问题"><a href="#三-遇到的一些问题" class="headerlink" title="三.遇到的一些问题"></a>三.遇到的一些问题</h3><h4 id="1-列表与列表中对应元素的相加不能用’-’，而是应该用循环一个个提取相加"><a href="#1-列表与列表中对应元素的相加不能用’-’，而是应该用循环一个个提取相加" class="headerlink" title="1.列表与列表中对应元素的相加不能用’+’，而是应该用循环一个个提取相加"></a>1.列表与列表中对应元素的相加不能用’+’，而是应该用循环一个个提取相加</h4><h4 id="2-C0的选取问题"><a href="#2-C0的选取问题" class="headerlink" title="2.C0的选取问题"></a>2.C<del>0</del>的选取问题</h4><p>C<del>0</del>不能选zm,而是应该选取zm^2^,原因是梯度是一个导数，其正负代表着函数的起伏，而不是函数的正负，选取不当会导致a,b,c值恒增或恒减。</p>
+<h3 id="四-代码"><a href="#四-代码" class="headerlink" title="四.代码"></a>四.代码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">create</span>():</span></span><br><span class="line">    a=<span class="number">3</span></span><br><span class="line">    b=<span class="number">4</span></span><br><span class="line">    c=<span class="number">5</span></span><br><span class="line">    </span><br><span class="line">    data = []</span><br><span class="line">    x=np.random.uniform(-<span class="number">10</span>,<span class="number">10</span>,<span class="number">500</span>)</span><br><span class="line">    y=np.random.uniform(-<span class="number">10</span>,<span class="number">10</span>,<span class="number">500</span>)</span><br><span class="line">    e=np.random.randn(<span class="number">500</span>, <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>,<span class="number">500</span>):</span><br><span class="line">        mini = []</span><br><span class="line">        mini.append(<span class="built_in">round</span>(a*x[i]+b*y[i]+c+e[i][<span class="number">0</span>],<span class="number">4</span>))</span><br><span class="line">        mini.append(<span class="built_in">round</span>(x[i],<span class="number">4</span>))</span><br><span class="line">        mini.append(<span class="built_in">round</span>(y[i],<span class="number">4</span>))</span><br><span class="line">        mini.append(<span class="built_in">round</span>(e[i][<span class="number">0</span>],<span class="number">4</span>))</span><br><span class="line">        data.append(mini)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> data</span><br><span class="line"></span><br><span class="line"><span class="comment">#list中存的是a帽，b帽，c帽的一维向量，是函数里的m_list</span></span><br><span class="line"><span class="built_in">list</span>=[]</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>,<span class="number">3</span>):</span><br><span class="line">    a = np.random.uniform(<span class="number">0</span>,<span class="number">10</span>,<span class="number">1</span>)[<span class="number">0</span>]</span><br><span class="line">    a=<span class="built_in">round</span>(a,<span class="number">4</span>)</span><br><span class="line">    <span class="built_in">list</span>.append(a)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;a:&#123;0&#125;,b:&#123;1&#125;,c:&#123;2&#125;&quot;</span>.<span class="built_in">format</span>(<span class="built_in">list</span>[<span class="number">0</span>],<span class="built_in">list</span>[<span class="number">1</span>],<span class="built_in">list</span>[<span class="number">2</span>]))</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">update</span>(<span class="params">m,eta,m_list</span>):</span></span><br><span class="line">    <span class="comment">#zm=ax+by+c</span></span><br><span class="line">    zm = <span class="built_in">round</span>(m_list[<span class="number">0</span>]*m[<span class="number">1</span>] + m_list[<span class="number">1</span>]*m[<span class="number">2</span>] + m_list[<span class="number">2</span>],<span class="number">4</span>)</span><br><span class="line">    z = zm - m[<span class="number">0</span>]</span><br><span class="line">    <span class="comment">#z是输出层与预期的差</span></span><br><span class="line">    delta = [<span class="built_in">round</span>(m[<span class="number">1</span>]*eta*z,<span class="number">6</span>),<span class="built_in">round</span>(m[<span class="number">2</span>]*eta*z,<span class="number">6</span>),<span class="built_in">round</span>(eta*z,<span class="number">6</span>)]</span><br><span class="line">    <span class="comment">#print(delta)</span></span><br><span class="line">    mm = []</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> [<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>]:</span><br><span class="line">        num = <span class="built_in">round</span>(m_list[i]-delta[i],<span class="number">4</span>)</span><br><span class="line">        mm.append(num)</span><br><span class="line">    <span class="comment">#print(mm)</span></span><br><span class="line">    <span class="keyword">return</span> mm</span><br><span class="line"></span><br><span class="line"><span class="comment">#梯度下降函数，其中epochs是迭代次数，eta是学习步长</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">SGD</span>(<span class="params">epochs,eta,m_list</span>):</span></span><br><span class="line">    <span class="keyword">for</span> x <span class="keyword">in</span> <span class="built_in">range</span>(epochs):</span><br><span class="line">        number = <span class="number">0</span></span><br><span class="line">        <span class="comment">#数据集中每个数都保留到小数点后四位</span></span><br><span class="line">        data = create()</span><br><span class="line">        <span class="keyword">for</span> mini <span class="keyword">in</span> data[<span class="number">0</span>:<span class="number">500</span>]:</span><br><span class="line">            m_list=update(mini,eta,m_list)</span><br><span class="line">            number +=<span class="number">1</span></span><br><span class="line">            <span class="keyword">if</span> number <span class="keyword">in</span> [<span class="number">100</span>,<span class="number">200</span>,<span class="number">300</span>,<span class="number">400</span>,<span class="number">500</span>]:</span><br><span class="line">                <span class="built_in">print</span>(<span class="string">&quot;Epoch &#123;0&#125;=&gt;a:&#123;1&#125;,b:&#123;2&#125;,c:&#123;3&#125;,delta=&#123;4&#125;&quot;</span>.<span class="built_in">format</span>(</span><br><span class="line">                    x, <span class="built_in">round</span>(m_list[<span class="number">0</span>],<span class="number">2</span>),<span class="built_in">round</span>(m_list[<span class="number">1</span>],<span class="number">2</span>),<span class="built_in">round</span>(m_list[<span class="number">2</span>],<span class="number">2</span>),<span class="built_in">round</span>(m_list[<span class="number">0</span>]*mini[<span class="number">1</span>] + m_list[<span class="number">1</span>]*mini[<span class="number">2</span>] + m_list[<span class="number">2</span>]-mini[<span class="number">0</span>],<span class="number">4</span>)))</span><br><span class="line"></span><br><span class="line">SGD(<span class="number">10</span>,<span class="number">0.003</span>,<span class="built_in">list</span>)</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/10/04/%E5%BE%AE%E5%85%89%E8%80%83%E6%A0%B8%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-02-%E5%85%A5%E9%97%A8%E7%90%86%E8%AE%BA%E5%AE%9E%E8%B7%B5/" data-id="ckuco6b630000qcrr8sq69do7" data-title="微光考核机器学习-02:入门理论实践" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-微光考核机器学习-01-入门理论基础" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2021/09/28/%E5%BE%AE%E5%85%89%E8%80%83%E6%A0%B8%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-01-%E5%85%A5%E9%97%A8%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80/" class="article-date">
@@ -656,7 +718,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">September 2021</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/10/">October 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">September 2021</a></li></ul>
     </div>
   </div>
 
@@ -667,6 +729,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2021/10/04/%E5%BE%AE%E5%85%89%E8%80%83%E6%A0%B8%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-02-%E5%85%A5%E9%97%A8%E7%90%86%E8%AE%BA%E5%AE%9E%E8%B7%B5/">微光考核机器学习-02:入门理论实践</a>
+          </li>
         
           <li>
             <a href="/2021/09/28/%E5%BE%AE%E5%85%89%E8%80%83%E6%A0%B8%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-01-%E5%85%A5%E9%97%A8%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80/">微光考核机器学习-01:入门理论基础</a>
@@ -682,10 +748,6 @@
         
           <li>
             <a href="/2021/09/14/%E5%BE%AE%E5%85%89%E8%80%83%E6%A0%B8Python-02-%E7%88%AC%E8%99%AB%E5%85%A5%E9%97%A8/">微光考核Python-02:爬虫入门</a>
-          </li>
-        
-          <li>
-            <a href="/2021/09/11/%E5%BE%AE%E5%85%89%E8%80%83%E6%A0%B8Python-01-HelloPython/">微光考核Python-01:HelloPython</a>
           </li>
         
       </ul>
